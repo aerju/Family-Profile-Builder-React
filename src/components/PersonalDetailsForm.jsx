@@ -17,21 +17,20 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   phoneNumber: Yup.string().required("Phone Number is required"),
   dob: Yup.string().required("Date of Birth is required"),
-  members: Yup.array().of(
-    Yup.object().shape({
-      membername: Yup.string().required("Member Name is required"),
-      memberage: Yup.number()
-        .required("Member Age is required")
-        .test("is-positive", "Age must be a positive number", (value) => {
-          return value === undefined || (value !== null && value >= 0);
-        }),
-    })
-  ),
+  // members: Yup.array().of(
+  //   Yup.object().shape({
+  //     membername: Yup.string().required("Member Name is required"),
+  //     memberage: Yup.number()
+  //       .required("Member Age is required")
+  //       .test("is-positive", "Age must be a positive number", (value) => {
+  //         return value === undefined || (value !== null && value >= 0);
+  //       }),
+  //   })
+  // ),
   // showAddFamilyForm: Yup.boolean(),
 });
 
 const PersonalDetailsFrom = () => {
-
   const initialValues = {
     name: "",
     email: "",
@@ -41,18 +40,15 @@ const PersonalDetailsFrom = () => {
   };
 
   const handleSubmit = (values) => {
+    console.log("working");
     // Handle form submission here
     console.log(values);
   };
-
-
 
   const [showAddFamilyForm, setShowAddFamilyForm] = useState(false);
   const handleToggleAddFamilyForm = () => {
     setShowAddFamilyForm(!showAddFamilyForm);
   };
-
- 
 
   return (
     <Container maxWidth="sm">
@@ -66,8 +62,8 @@ const PersonalDetailsFrom = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ errors, touched, values }) => (
-              <Form>
+            {({ errors, touched, values, handleSubmit }) => (
+              <Form onSubmit={handleSubmit}>
                 <div>
                   <Field
                     as={TextField}
