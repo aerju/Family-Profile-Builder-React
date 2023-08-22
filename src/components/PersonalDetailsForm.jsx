@@ -17,22 +17,10 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   phoneNumber: Yup.string().required("Phone Number is required"),
   dob: Yup.string().required("Date of Birth is required"),
-  // members: Yup.array().of(
-  //   Yup.object().shape({
-  //     membername: Yup.string().required("Member Name is required"),
-  //     memberage: Yup.number()
-  //       .required("Member Age is required")
-  //       .test("is-positive", "Age must be a positive number", (value) => {
-  //         return value === undefined || (value !== null && value >= 0);
-  //       }),
-  //   })
-  // ),
-  // showAddFamilyForm: Yup.boolean(),
 });
 
 const PersonalDetailsFrom = () => {
-  const [member,setMember]=useState('')
-  const [members,setMembers]=useState([])
+
   const initialValues = {
     name: "",
     email: "",
@@ -67,15 +55,7 @@ const PersonalDetailsFrom = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({
-              errors,
-              touched,
-              values,
-              handleSubmit,
-              handleChange,
-              handleBlur,
-              isValid,
-            }) => (
+            {({ errors, touched, values, handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
                 <div>
                   <Field
@@ -111,7 +91,6 @@ const PersonalDetailsFrom = () => {
                   <Field
                     as={TextField}
                     name="dob"
-                    // label="Date of Birth"
                     type="date"
                     error={errors.dob && touched.dob}
                     helperText={<ErrorMessage name="dob" />}

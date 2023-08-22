@@ -31,31 +31,31 @@ const PreviewSection = () => {
           </Typography>
           <List>
             <ListItem>
-              <ListItemText primary={`Name: ${userData.name}`} />
+              <ListItemText primary={`Name: ${userData?.name}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Email: ${userData.email}`} />
+              <ListItemText primary={`Email: ${userData?.email}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Phone Number: ${userData.phoneNumber}`} />
+              <ListItemText primary={`Phone Number: ${userData?.phoneNumber}`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Date of Birth: ${userData.dob}`} />
+              <ListItemText primary={`Date of Birth: ${userData?.dob}`} />
             </ListItem>
           </List>
           <Typography variant="subtitle1" gutterBottom>
             Family Members:
           </Typography>
-          {/* <List>
+          <List>
               {userData.members.map((member, index) => (
                 <ListItem key={index}>
                   <ListItemText
-                    primary={`Member Name: ${member.membername}`}
-                    secondary={`Member Age: ${member.memberage}`}
+                    primary={`Member Name: ${member?.membername}`}
+                    secondary={`Member Age: ${member?.memberage}`}
                   />
                 </ListItem>
               ))}
-            </List> */}
+            </List>
         </Paper>
       </Container>
     );
