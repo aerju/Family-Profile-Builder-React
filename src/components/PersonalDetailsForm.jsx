@@ -10,7 +10,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import "./PersonalDetailsForm.css";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -31,6 +31,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const PersonalDetailsFrom = () => {
+  const [member,setMember]=useState('')
+  const [members,setMembers]=useState([])
   const initialValues = {
     name: "",
     email: "",
@@ -39,15 +41,18 @@ const PersonalDetailsFrom = () => {
     members: [{ membername: "", memberage: "" }],
   };
 
-  const handleSubmit = (values) => {
-    console.log("working");
-    // Handle form submission here
-    console.log(values);
-  };
-
   const [showAddFamilyForm, setShowAddFamilyForm] = useState(false);
   const handleToggleAddFamilyForm = () => {
     setShowAddFamilyForm(!showAddFamilyForm);
+  };
+
+  const handleSubmit = (values, { resetForm }) => {
+    console.log(values);
+    localStorage.removeItem("users");
+    localStorage.setItem("users", JSON.stringify(values));
+    setShowAddFamilyForm(!showAddFamilyForm);
+    toast.success("Person Added");
+    resetForm();
   };
 
   return (
@@ -62,7 +67,15 @@ const PersonalDetailsFrom = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ errors, touched, values, handleSubmit }) => (
+            {({
+              errors,
+              touched,
+              values,
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              isValid,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <div>
                   <Field
@@ -117,21 +130,20 @@ const PersonalDetailsFrom = () => {
                     label="Add Family Members"
                   />
                 </div>
-
                 {showAddFamilyForm && (
                   <FieldArray name="members">
                     {({ push, remove }) => (
                       <div>
-                        {values.members.map((_, index) => (
+                        {values.members.map((p, index) => (
                           <div key={index}>
                             <Field
                               name={`members[${index}].membername`}
-                              label="Name"
+                              label="Memeber Name"
                               component={TextField}
                             />
                             <Field
                               name={`members[${index}].memberage`}
-                              label="Age"
+                              label="Memeber Age"
                               component={TextField}
                             />
                             <Button type="button" onClick={() => remove(index)}>
