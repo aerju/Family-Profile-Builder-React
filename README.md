@@ -1,6 +1,5 @@
 # Family-Profile-Builder-React
 
-The Family Profile Builder aims to simplify the process of creating and maintaining personal profiles while also allowing users to keep track of their family member information. Leveraging the power of React for dynamic user interfaces, Material-UI for modern and responsive design components, Formik for intuitive form management, and Yup for robust validation, this application offers a user-friendly experience.
 
 ## Table of Contents
 
@@ -13,7 +12,7 @@ The Family Profile Builder aims to simplify the process of creating and maintain
 
 ## Project Overview
 
-Provide a brief overview of your project. Explain its purpose, goals, and any key features.
+The Family Profile Builder aims to simplify the process of creating and maintaining personal profiles while also allowing users to keep track of their family member information. Leveraging the power of React for dynamic user interfaces, Material-UI for modern and responsive design components, Formik for intuitive form management, and Yup for robust validation, this application offers a user-friendly experience.
 
 ## Features
 
